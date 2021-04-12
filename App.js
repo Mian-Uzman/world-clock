@@ -58,50 +58,45 @@ export default function App() {
     },
     {
       id: '7',
-      name: 'Tokyo',
+      name: 'Lahore',
       time: '05:54 PM',
-      status: 'Today, 7 hours ahead'
+      status: 'Today,  2 hours ahead'
     },
     {
       id: '8',
-      name: 'New York',
+      name: 'Torronto',
       time: '04:54 AM',
       status: 'Today, 6 hours behind'
     },
     {
       id: '9',
-      name: 'London',
+      name: 'Karachi',
       time: '09:54 AM',
-      status: 'Today, 1 hours behind'
+      status: 'Today, 1 hours ahead'
     },
 
     {
       id: '10',
-      name: 'Sydney',
+      name: 'New Delhi',
       time: '06:54 PM',
       status: 'Today, 8 hours ahead'
     },
     {
       id: '11',
-      name: 'Moscow',
+      name: 'Islamabad',
       time: '11:54 AM',
       status: 'Today, 1 hours ahead'
     },
     {
       id: '12',
-      name: 'Berlin',
+      name: 'Kuwait',
       time: '10:54 AM',
       status: 'Today, same time'
     }
   ]);
 
   const [showCountry, setShowCountry] = useState([
-    {
-      id: '1',
-      name: 'Tokyo',
-      time: '05:54 PM',
-      status: 'Today, 7 hours ahead'
-    },
+
   ]);
 
   function addCountry(id) {

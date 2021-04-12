@@ -11,12 +11,12 @@ const HomeScreen = ({ navigation, countryName }) => {
 
     return (
         <View style={styles.container}>
-            <FlatList
-                keyExtractor={(item) => item.id}
-                data={countryName} renderItem={({ item }) => (
-                    <CountryList item={item} navigatePage={navigatePage} />
-                )} />
-
+            {(countryName.length === 0) ? <Text style={styles.noCountryText}>No Country Added!</Text> :
+                <FlatList
+                    keyExtractor={(item) => item.id}
+                    data={countryName} renderItem={({ item }) => (
+                        <CountryList item={item} navigatePage={navigatePage} />
+                    )} />}
             <AddButton navigatePage={navigatePage} />
         </View>
     )
@@ -40,10 +40,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         padding: 10,
     },
-    pic: {
-        borderRadius: 30,
-        width: 60,
-        height: 60,
+    noCountryText: {
+        marginLeft: '25 %',
+        fontWeight: '600',
+        color: '#222',
+        fontSize: 24,
     },
     nameContainer: {
         flexDirection: 'row',
