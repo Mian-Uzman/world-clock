@@ -8,9 +8,9 @@ const AddButton = ({ navigatePage }) => {
         <TouchableOpacity style={styles.btn} onPress={navigatePage}>
             <View
                 style={{
-                    backgroundColor: '#f55353',
-                    width: 75,
-                    height: 75,
+                    backgroundColor: '#ff2e2e',
+                    width: 70,
+                    height: 70,
                     borderRadius: 45,
                 }}>
                 <Text style={styles.text}>Add</Text>
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        marginTop: 25,
+        marginTop: 24,
+        fontSize: 16,
         color: 'white',
         textAlign: 'center'
     }

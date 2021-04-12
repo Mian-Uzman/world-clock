@@ -4,10 +4,8 @@ import { TouchableOpacity } from 'react-native';
 
 const CountryList = ({ item, navigatePage }) => {
 
-
-
     return (
-        <TouchableOpacity onPress={navigatePage}>
+        <TouchableOpacity onPress={() => navigatePage(item.id)}>
             <View style={styles.row}>
                 <View>
                     <View style={styles.nameContainer}>
@@ -39,28 +37,25 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         padding: 10,
     },
-    pic: {
-        borderRadius: 30,
-        width: 60,
-        height: 60,
-    },
+
     nameContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: 280,
-        height: 70,
+        width: 350,
+        height: 55,
     },
     nameTxt: {
         marginLeft: 15,
         fontWeight: '600',
         color: '#222',
-        fontSize: 20,
-        width: 170,
+        fontSize: 22,
+        width: 200,
     },
     timeTxt: {
-        fontWeight: '200',
+        fontWeight: '600',
         color: '#777',
-        fontSize: 14,
+        fontSize: 16,
+        marginTop: 10
     },
     msgContainer: {
         flexDirection: 'row',
@@ -71,5 +66,6 @@ const styles = StyleSheet.create({
         color: '#008B8B',
         fontSize: 12,
         marginLeft: 15,
+        marginBottom: 10
     },
 })

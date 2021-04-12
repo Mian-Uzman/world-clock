@@ -1,38 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import AddButton from './AddButton';
-import { TouchableOpacity } from 'react-native';
+import CountryList from './CountryList';
 
+const HomeScreen = ({ navigation, countryName }) => {
 
-const HomeScreen = ({ navigation, addCountry, countryName }) => {
-
-    function navigatePage() {
+    function navigatePage(id) {
         navigation.navigate('All Countries');
     };
 
     return (
         <View style={styles.container}>
             <FlatList
-                keyExtractor={(item) => item.id.toString()}
+                keyExtractor={(item) => item.id}
                 data={countryName} renderItem={({ item }) => (
-
-                    <TouchableOpacity onPress={() => addCountry}>
-                        <View style={styles.row}>
-                            <View>
-                                <View style={styles.nameContainer}>
-
-                                    <Text style={styles.nameTxt} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
-                                    <Text style={styles.timeTxt}>{item.time}</Text>
-
-                                </View>
-                                <View style={styles.msgContainer}>
-                                    <Text style={styles.msgTxt}>{item.status}</Text>
-                                </View>
-
-                            </View>
-                        </View>
-
-                    </TouchableOpacity>
+                    <CountryList item={item} navigatePage={navigatePage} />
                 )} />
 
             <AddButton navigatePage={navigatePage} />

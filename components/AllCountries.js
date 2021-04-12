@@ -1,43 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, FlatList, View, TouchableWithoutFeedback } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, FlatList, View, TextInput, TouchableWithoutFeedback } from 'react-native'
+import CountryList from './CountryList';
 
 
-const AllCountries = ({ navigation, countryName }) => {
+const AllCountries = ({ navigation, addCountry, countryName }) => {
+
+    const [search, setSearch] = useState('');
 
     function navigateHome(id) {
-        navigation.navigate('Home', { id: id });
+        navigation.navigate('World Clock', { id: id });
+        addCountry(id);
+    }
+    function searchCountry() {
+        return countryName.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
+
     }
 
-
     return (
-        <View style={styles.container}>
-            <FlatList
-                keyExtractor={(item) => item.id.toString()}
-                data={countryName}
-                renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => navigateHome(item.id)}>
-                        <View style={styles.row}>
-                            <View>
-                                <View style={styles.nameContainer}>
+        <TouchableWithoutFeedback onPress={() => {
+            Keyboard.dismiss()
+        }}>
+            <View style={styles.container}>
+                <TextInput
+                    style={styles.searchBar}
+                    onChangeText={(e) => setSearch(e)}
+                    placeholder='Search' />
+                <FlatList
+                    keyExtractor={(item) => item.id}
+                    data={searchCountry()}
+                    renderItem={({ item }) => (
+                        <CountryList item={item} navigatePage={navigateHome} />
+                    )}
+                />
+            </View>
+        </TouchableWithoutFeedback>
 
-                                    <Text style={styles.nameTxt} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
-                                    <Text style={styles.timeTxt}>{item.time}</Text>
-
-                                </View>
-                                <View style={styles.msgContainer}>
-                                    <Text style={styles.msgTxt}>{item.status}</Text>
-                                </View>
-
-                            </View>
-                        </View>
-
-                    </TouchableOpacity>
-
-                )}
-            />
-        </View>
     )
 }
 
@@ -50,45 +47,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
 
     },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderColor: '#DCDCDC',
-        backgroundColor: '#fff',
-        borderBottomWidth: 1,
-        padding: 10,
-    },
-    pic: {
-        borderRadius: 30,
-        width: 60,
-        height: 60,
-    },
-    nameContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: 280,
-        height: 70,
-    },
-    nameTxt: {
-        marginLeft: 15,
-        fontWeight: '600',
-        color: '#222',
-        fontSize: 20,
-        width: 170,
-    },
-    timeTxt: {
-        fontWeight: '200',
-        color: '#777',
-        fontSize: 14,
-    },
-    msgContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    msgTxt: {
-        fontWeight: '400',
-        color: '#008B8B',
-        fontSize: 12,
-        marginLeft: 15,
+    searchBar: {
+        margin: 20,
+        width: '90%',
+        height: 50,
+        backgroundColor: 'white',
+        paddingLeft: 10,
+        marginBottom: 20,
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: '#ddd'
     },
 })
