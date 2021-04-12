@@ -2,10 +2,10 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native';
 
-const AddButton = () => {
+const AddButton = ({ navigatePage }) => {
     return (
 
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={navigatePage}>
             <View
                 style={{
                     backgroundColor: '#f55353',

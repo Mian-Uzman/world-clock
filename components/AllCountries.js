@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
-import AddButton from './AddButton';
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, FlatList, View, TouchableWithoutFeedback } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
 
 
-const HomeScreen = ({ navigation, addCountry, countryName }) => {
+const AllCountries = ({ navigation, countryName }) => {
 
-    function navigatePage() {
-        navigation.navigate('All Countries');
-    };
+    function navigateHome(id) {
+        navigation.navigate('Home', { id: id });
+    }
+
 
     return (
         <View style={styles.container}>
             <FlatList
                 keyExtractor={(item) => item.id.toString()}
-                data={countryName} renderItem={({ item }) => (
-
-                    <TouchableOpacity onPress={() => addCountry}>
+                data={countryName}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => navigateHome(item.id)}>
                         <View style={styles.row}>
                             <View>
                                 <View style={styles.nameContainer}>
@@ -33,14 +34,14 @@ const HomeScreen = ({ navigation, addCountry, countryName }) => {
                         </View>
 
                     </TouchableOpacity>
-                )} />
 
-            <AddButton navigatePage={navigatePage} />
+                )}
+            />
         </View>
     )
 }
 
-export default HomeScreen;
+export default AllCountries
 
 const styles = StyleSheet.create({
     container: {
@@ -49,7 +50,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
 
     },
-
     row: {
         flexDirection: 'row',
         alignItems: 'center',

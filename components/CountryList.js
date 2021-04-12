@@ -1,10 +1,13 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native';
 
-const CountryList = ({ item }) => {
+const CountryList = ({ item, navigatePage }) => {
+
+
+
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={navigatePage}>
             <View style={styles.row}>
                 <View>
                     <View style={styles.nameContainer}>
